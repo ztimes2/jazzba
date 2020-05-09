@@ -108,16 +108,16 @@ func (mr *NotebookStoreMockRecorder) FetchOne(arg0 interface{}) *gomock.Call {
 }
 
 // UpdateOne mocks base method
-func (m *NotebookStore) UpdateOne(arg0 storage.UpdateNotebookParameters) (*storage.Notebook, error) {
+func (m *NotebookStore) UpdateOne(arg0 storage.Tx, arg1 storage.UpdateNotebookParameters) (*storage.Notebook, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "UpdateOne", arg0)
+	ret := m.ctrl.Call(m, "UpdateOne", arg0, arg1)
 	ret0, _ := ret[0].(*storage.Notebook)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // UpdateOne indicates an expected call of UpdateOne
-func (mr *NotebookStoreMockRecorder) UpdateOne(arg0 interface{}) *gomock.Call {
+func (mr *NotebookStoreMockRecorder) UpdateOne(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateOne", reflect.TypeOf((*NotebookStore)(nil).UpdateOne), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateOne", reflect.TypeOf((*NotebookStore)(nil).UpdateOne), arg0, arg1)
 }

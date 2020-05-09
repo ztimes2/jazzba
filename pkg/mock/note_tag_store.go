@@ -49,32 +49,32 @@ func (mr *NoteTagStoreMockRecorder) BeginTx() *gomock.Call {
 }
 
 // CreateOne mocks base method
-func (m *NoteTagStore) CreateOne(arg0 storage.CreateNoteTagParameters) (*storage.NoteTag, error) {
+func (m *NoteTagStore) CreateOne(arg0 storage.Tx, arg1 storage.CreateNoteTagParameters) (*storage.NoteTag, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "CreateOne", arg0)
+	ret := m.ctrl.Call(m, "CreateOne", arg0, arg1)
 	ret0, _ := ret[0].(*storage.NoteTag)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // CreateOne indicates an expected call of CreateOne
-func (mr *NoteTagStoreMockRecorder) CreateOne(arg0 interface{}) *gomock.Call {
+func (mr *NoteTagStoreMockRecorder) CreateOne(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateOne", reflect.TypeOf((*NoteTagStore)(nil).CreateOne), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateOne", reflect.TypeOf((*NoteTagStore)(nil).CreateOne), arg0, arg1)
 }
 
 // DeleteOne mocks base method
-func (m *NoteTagStore) DeleteOne(arg0 storage.DeleteNoteTagParameters) error {
+func (m *NoteTagStore) DeleteOne(arg0 storage.Tx, arg1 storage.DeleteNoteTagParameters) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "DeleteOne", arg0)
+	ret := m.ctrl.Call(m, "DeleteOne", arg0, arg1)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // DeleteOne indicates an expected call of DeleteOne
-func (mr *NoteTagStoreMockRecorder) DeleteOne(arg0 interface{}) *gomock.Call {
+func (mr *NoteTagStoreMockRecorder) DeleteOne(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteOne", reflect.TypeOf((*NoteTagStore)(nil).DeleteOne), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteOne", reflect.TypeOf((*NoteTagStore)(nil).DeleteOne), arg0, arg1)
 }
 
 // FetchManyByNote mocks base method

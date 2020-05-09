@@ -49,18 +49,18 @@ func (mr *NoteStoreMockRecorder) BeginTx() *gomock.Call {
 }
 
 // CreateOne mocks base method
-func (m *NoteStore) CreateOne(arg0 storage.CreateNoteParameters) (*storage.Note, error) {
+func (m *NoteStore) CreateOne(arg0 storage.Tx, arg1 storage.CreateNoteParameters) (*storage.Note, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "CreateOne", arg0)
+	ret := m.ctrl.Call(m, "CreateOne", arg0, arg1)
 	ret0, _ := ret[0].(*storage.Note)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // CreateOne indicates an expected call of CreateOne
-func (mr *NoteStoreMockRecorder) CreateOne(arg0 interface{}) *gomock.Call {
+func (mr *NoteStoreMockRecorder) CreateOne(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateOne", reflect.TypeOf((*NoteStore)(nil).CreateOne), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateOne", reflect.TypeOf((*NoteStore)(nil).CreateOne), arg0, arg1)
 }
 
 // DeleteOne mocks base method
@@ -153,16 +153,16 @@ func (mr *NoteStoreMockRecorder) FetchOne(arg0 interface{}) *gomock.Call {
 }
 
 // UpdateOne mocks base method
-func (m *NoteStore) UpdateOne(arg0 storage.UpdateNoteParameters) (*storage.Note, error) {
+func (m *NoteStore) UpdateOne(arg0 storage.Tx, arg1 storage.UpdateNoteParameters) (*storage.Note, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "UpdateOne", arg0)
+	ret := m.ctrl.Call(m, "UpdateOne", arg0, arg1)
 	ret0, _ := ret[0].(*storage.Note)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // UpdateOne indicates an expected call of UpdateOne
-func (mr *NoteStoreMockRecorder) UpdateOne(arg0 interface{}) *gomock.Call {
+func (mr *NoteStoreMockRecorder) UpdateOne(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateOne", reflect.TypeOf((*NoteStore)(nil).UpdateOne), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateOne", reflect.TypeOf((*NoteStore)(nil).UpdateOne), arg0, arg1)
 }
