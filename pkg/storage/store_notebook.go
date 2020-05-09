@@ -13,9 +13,8 @@ type Notebook struct {
 // UpdateNotebookParameters holds parameters for updating a notebook in a data
 // store.
 type UpdateNotebookParameters struct {
-	Transaction Tx
-	NotebookID  int
-	Name        string
+	NotebookID int
+	Name       string
 }
 
 // NotebookStore abstracts functionality for performing CRUD operations with
@@ -25,6 +24,6 @@ type NotebookStore interface {
 	CreateOne(tx Tx, notebookName string) (*Notebook, error)
 	FetchOne(notebookID int) (*Notebook, error)
 	FetchAllPaginated(limit, offset int) ([]Notebook, error)
-	UpdateOne(UpdateNotebookParameters) (*Notebook, error)
+	UpdateOne(tx Tx, p UpdateNotebookParameters) (*Notebook, error)
 	DeleteOne(tx Tx, notebookID int) error
 }

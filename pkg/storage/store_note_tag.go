@@ -13,17 +13,15 @@ type NoteTag struct {
 // CreateNoteTagParameters holds parameters for creating a note tag in a data
 // store.
 type CreateNoteTagParameters struct {
-	Transaction Tx
-	NoteID      int
-	TagName     string
+	NoteID  int
+	TagName string
 }
 
 // DeleteNoteTagParameters holds parameters for deleting a note tag from a data
 // store.
 type DeleteNoteTagParameters struct {
-	Transaction Tx
-	NoteID      int
-	TagName     string
+	NoteID  int
+	TagName string
 }
 
 // NoteTagsMap represents a map where a key is a note ID and a value is a
@@ -34,9 +32,9 @@ type NoteTagsMap map[int][]NoteTag
 // tags in a data store.
 type NoteTagStore interface {
 	Transactor
-	CreateOne(CreateNoteTagParameters) (*NoteTag, error)
+	CreateOne(tx Tx, p CreateNoteTagParameters) (*NoteTag, error)
 	FetchManyByNotePaginated(noteID, limit, offset int) ([]NoteTag, error)
 	FetchManyByNote(noteID int) ([]NoteTag, error)
 	FetchManyByNotes(noteIDs []int) (NoteTagsMap, error)
-	DeleteOne(DeleteNoteTagParameters) error
+	DeleteOne(tx Tx, p DeleteNoteTagParameters) error
 }
