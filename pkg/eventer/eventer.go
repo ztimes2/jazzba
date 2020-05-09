@@ -1,10 +1,10 @@
 package eventer
 
 import (
-	"jazzba/pkg/eventdriven"
-	"jazzba/pkg/eventer/eventhandling"
-	"jazzba/pkg/search"
-	"jazzba/pkg/storage"
+	"github.com/ztimes2/jazzba/pkg/eventdriven"
+	"github.com/ztimes2/jazzba/pkg/eventer/eventhandling"
+	"github.com/ztimes2/jazzba/pkg/search"
+	"github.com/ztimes2/jazzba/pkg/storage"
 
 	"github.com/sirupsen/logrus"
 )

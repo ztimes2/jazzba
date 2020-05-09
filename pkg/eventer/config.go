@@ -2,7 +2,8 @@ package eventer
 
 import (
 	"context"
-	"jazzba/pkg/nuktenv"
+
+	"github.com/ztimes2/jazzba/pkg/nuktenv"
 
 	"github.com/heetch/confita"
 	"github.com/heetch/confita/backend/env"
