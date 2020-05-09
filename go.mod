@@ -10,7 +10,8 @@ require (
 	github.com/heetch/confita v0.9.0
 	github.com/joho/godotenv v1.3.0
 	github.com/lib/pq v1.1.1
+	github.com/olivere/elastic/v7 v7.0.15
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.2.0
-	github.com/stretchr/testify v1.4.0
+	github.com/stretchr/testify v1.5.1
 )
