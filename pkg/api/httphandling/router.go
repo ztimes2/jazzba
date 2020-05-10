@@ -41,48 +41,47 @@ func NewRouter(cfg RouterConfig) http.Handler {
 	noteHandler := newNoteHandler(cfg.NoteService, cfg.Logger)
 	noteTagHandler := newNoteTagHandler(cfg.NoteTagService, cfg.Logger)
 
-	notebooksSubRouter := chi.NewRouter().Route("/notebooks", func(r chi.Router) {
-		r.Post("/", notebookHandler.createNotebook)
-		r.Get("/", notebookHandler.fetchNotebooks)
+	r := chi.NewRouter()
+	r.Route("/v1", func(r chi.Router) {
 
-		r.Route("/"+newIntPathParamPlaceholder(pathParamNotebookID), func(r chi.Router) {
-			r.Get("/", notebookHandler.fetchNotebook)
-			r.Put("/", notebookHandler.updateNotebook)
-			r.Delete("/", notebookHandler.deleteNotebook)
-			r.Get("/notes", noteHandler.fetchNotesByNotebook)
-		})
-	})
+		r.Route("/notebooks", func(r chi.Router) {
+			r.Post("/", notebookHandler.createNotebook)
+			r.Get("/", notebookHandler.fetchNotebooks)
 
-	notesSubRouter := chi.NewRouter().Route("/notes", func(r chi.Router) {
-		r.Post("/", noteHandler.createNote)
-		r.Get("/", noteHandler.fetchNotes)
-
-		r.Route("/"+newIntPathParamPlaceholder(pathParamNoteID), func(r chi.Router) {
-			r.Get("/", noteHandler.fetchNote)
-			r.Put("/", noteHandler.updateNote)
-			r.Delete("/", noteHandler.deleteNote)
+			r.Route("/"+newIntPathParamPlaceholder(pathParamNotebookID), func(r chi.Router) {
+				r.Get("/", notebookHandler.fetchNotebook)
+				r.Put("/", notebookHandler.updateNotebook)
+				r.Delete("/", notebookHandler.deleteNotebook)
+				r.Get("/notes", noteHandler.fetchNotesByNotebook)
+			})
 		})
 
-		r.Route("/"+newIntPathParamPlaceholder(pathParamNoteID)+"/tags", func(r chi.Router) {
-			r.Post("/", noteTagHandler.createNoteTag)
-			r.Get("/", noteTagHandler.fetchNoteTagsByNote)
-			r.Delete("/"+newStringPathParamPlaceholder(pathParamTagName),
-				noteTagHandler.deleteNoteTag)
+		r.Route("/notes", func(r chi.Router) {
+			r.Post("/", noteHandler.createNote)
+			r.Get("/", noteHandler.fetchNotes)
+
+			r.Route("/"+newIntPathParamPlaceholder(pathParamNoteID), func(r chi.Router) {
+				r.Get("/", noteHandler.fetchNote)
+				r.Put("/", noteHandler.updateNote)
+				r.Delete("/", noteHandler.deleteNote)
+			})
+
+			r.Route("/"+newIntPathParamPlaceholder(pathParamNoteID)+"/tags", func(r chi.Router) {
+				r.Post("/", noteTagHandler.createNoteTag)
+				r.Get("/", noteTagHandler.fetchNoteTagsByNote)
+				r.Delete("/"+newStringPathParamPlaceholder(pathParamTagName),
+					noteTagHandler.deleteNoteTag)
+			})
+
 		})
 
-	})
+		r.Route("/bulk", func(r chi.Router) {
+			r.Get("/notebook_notes", noteHandler.fetchNotesByNotebooks)
+			r.Get("/note_tags", noteTagHandler.fetchNoteTagsByNotes)
+		})
 
-	bulkSubRouter := chi.NewRouter().Route("/bulk", func(r chi.Router) {
-		r.Get("/notebook_notes", noteHandler.fetchNotesByNotebooks)
-		r.Get("/note_tags", noteTagHandler.fetchNoteTagsByNotes)
-	})
-
-	routerV1 := chi.NewRouter().Route("/v1", func(r chi.Router) {
-		r.Mount("/", notebooksSubRouter)
-		r.Mount("/", notesSubRouter)
-		r.Mount("/", bulkSubRouter)
 		r.Get("/search/notes", noteHandler.fetchNotesBySearchQuery)
 	})
 
-	return routerV1
+	return r
 }
