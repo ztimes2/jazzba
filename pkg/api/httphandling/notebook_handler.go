@@ -38,7 +38,7 @@ func (nh notebookHandler) createNotebook(w http.ResponseWriter, r *http.Request)
 		},
 	)
 	if err != nil {
-		var dpErr *storage.DuplicateResourceError
+		var dpErr *storage.DuplicateError
 		if errors.As(err, &dpErr) {
 			writeBadRequest(w, r.Header, newErrorResponse(dpErr.Error()))
 			return
@@ -56,7 +56,7 @@ func (nh notebookHandler) fetchNotebook(w http.ResponseWriter, r *http.Request) 
 
 	notebook, err := nh.notebookService.FetchNotebook(notebookID)
 	if err != nil {
-		var rnfErr *storage.ResourceNotFoundError
+		var rnfErr *storage.NotFoundError
 		if errors.As(err, &rnfErr) {
 			writeNotFound(w, r.Header, newErrorResponse(rnfErr.Error()))
 			return
@@ -98,13 +98,13 @@ func (nh notebookHandler) updateNotebook(w http.ResponseWriter, r *http.Request)
 		},
 	)
 	if err != nil {
-		var drErr *storage.DuplicateResourceError
+		var drErr *storage.DuplicateError
 		if errors.As(err, &drErr) {
 			writeBadRequest(w, r.Header, newErrorResponse(drErr.Error()))
 			return
 		}
 
-		var rnfErr *storage.ResourceNotFoundError
+		var rnfErr *storage.NotFoundError
 		if errors.As(err, &rnfErr) {
 			writeNotFound(w, r.Header, newErrorResponse(rnfErr.Error()))
 			return
@@ -121,7 +121,7 @@ func (nh notebookHandler) deleteNotebook(w http.ResponseWriter, r *http.Request)
 	notebookID, _ := readIntPathParam(r, pathParamNotebookID)
 
 	if err := nh.notebookService.DeleteNotebook(notebookID); err != nil {
-		var rnfErr *storage.ResourceNotFoundError
+		var rnfErr *storage.NotFoundError
 		if errors.As(err, &rnfErr) {
 			writeNotFound(w, r.Header, newErrorResponse(rnfErr.Error()))
 			return
