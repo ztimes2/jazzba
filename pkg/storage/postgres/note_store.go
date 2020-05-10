@@ -112,7 +112,7 @@ func (ns NoteStore) FetchOne(noteID int) (*storage.Note, error) {
 func (ns NoteStore) FetchAllPaginated(limit, offset int) ([]storage.Note, error) {
 	query, args, err := sqlQueryBaseSelectFromNotes.
 		Limit(uint64(limit)).
-		Offset(uint64(limit)).
+		Offset(uint64(offset)).
 		OrderBy("notes.created_at DESC").
 		ToSql()
 	if err != nil {
