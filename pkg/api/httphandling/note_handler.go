@@ -3,9 +3,10 @@ package httphandling
 import (
 	"encoding/json"
 	"errors"
-	"jazzba/pkg/api/service"
-	"jazzba/pkg/storage"
 	"net/http"
+
+	"github.com/ztimes2/jazzba/pkg/api/service"
+	"github.com/ztimes2/jazzba/pkg/storage"
 
 	"github.com/sirupsen/logrus"
 )

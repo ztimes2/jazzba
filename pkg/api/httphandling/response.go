@@ -2,10 +2,11 @@ package httphandling
 
 import (
 	"encoding/json"
-	"jazzba/pkg/api/p8n"
-	"jazzba/pkg/api/service"
-	"jazzba/pkg/storage"
 	"time"
+
+	"github.com/ztimes2/jazzba/pkg/api/p8n"
+	"github.com/ztimes2/jazzba/pkg/api/service"
+	"github.com/ztimes2/jazzba/pkg/storage"
 )
 
 // response is an abstract API response used for writing an HTTP response body.
