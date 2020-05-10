@@ -90,11 +90,10 @@ func (ns NoteService) CreateNote(params CreateNoteParameters) (*storage.Note, er
 		return nil, newNoteStoreStartTransactionError(err)
 	}
 
-	createdNote, err := ns.noteStore.CreateOne(storage.CreateNoteParameters{
-		Transaction: tx,
-		Name:        params.Name,
-		Content:     params.Content,
-		NotebookID:  params.NotebookID,
+	createdNote, err := ns.noteStore.CreateOne(tx, storage.CreateNoteParameters{
+		Name:       params.Name,
+		Content:    params.Content,
+		NotebookID: params.NotebookID,
 	})
 	if err != nil {
 		tx.Rollback()
@@ -207,12 +206,11 @@ func (ns NoteService) UpdateNote(params UpdateNoteParameters) (*storage.Note, er
 		return nil, newNoteStoreStartTransactionError(err)
 	}
 
-	updatedNote, err := ns.noteStore.UpdateOne(storage.UpdateNoteParameters{
-		Transaction: tx,
-		NoteID:      params.NoteID,
-		Name:        params.Name,
-		Content:     params.Content,
-		NotebookID:  params.NotebookID,
+	updatedNote, err := ns.noteStore.UpdateOne(tx, storage.UpdateNoteParameters{
+		NoteID:     params.NoteID,
+		Name:       params.Name,
+		Content:    params.Content,
+		NotebookID: params.NotebookID,
 	})
 	if err != nil {
 		tx.Rollback()

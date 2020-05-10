@@ -168,11 +168,10 @@ func TestNoteService_CreateNote(t *testing.T) {
 						EXPECT().BeginTx().Return(mockTx, nil)
 					mockNoteStore.
 						EXPECT().
-						CreateOne(storage.CreateNoteParameters{
-							Transaction: mockTx,
-							Name:        testData.Name.Valid,
-							Content:     testData.Content.Valid,
-							NotebookID:  1,
+						CreateOne(mockTx, storage.CreateNoteParameters{
+							Name:       testData.Name.Valid,
+							Content:    testData.Content.Valid,
+							NotebookID: 1,
 						}).
 						Return(nil, errors.New("something went wrong"))
 					return mockNoteStore
@@ -202,11 +201,10 @@ func TestNoteService_CreateNote(t *testing.T) {
 						EXPECT().BeginTx().Return(mockTx, nil)
 					mockNoteStore.
 						EXPECT().
-						CreateOne(storage.CreateNoteParameters{
-							Transaction: mockTx,
-							Name:        testData.Name.Valid,
-							Content:     testData.Content.Valid,
-							NotebookID:  1,
+						CreateOne(mockTx, storage.CreateNoteParameters{
+							Name:       testData.Name.Valid,
+							Content:    testData.Content.Valid,
+							NotebookID: 1,
 						}).
 						Return(
 							&storage.Note{
@@ -268,11 +266,10 @@ func TestNoteService_CreateNote(t *testing.T) {
 						EXPECT().BeginTx().Return(mockTx, nil)
 					mockNoteStore.
 						EXPECT().
-						CreateOne(storage.CreateNoteParameters{
-							Transaction: mockTx,
-							Name:        testData.Name.Valid,
-							Content:     testData.Content.Valid,
-							NotebookID:  1,
+						CreateOne(mockTx, storage.CreateNoteParameters{
+							Name:       testData.Name.Valid,
+							Content:    testData.Content.Valid,
+							NotebookID: 1,
 						}).
 						Return(
 							&storage.Note{
@@ -1123,12 +1120,11 @@ func TestNoteService_UpdateNote(t *testing.T) {
 						EXPECT().BeginTx().Return(mockTx, nil)
 					mockNoteStore.
 						EXPECT().
-						UpdateOne(storage.UpdateNoteParameters{
-							Transaction: mockTx,
-							NoteID:      1,
-							Name:        testData.Name.Valid,
-							Content:     testData.Content.Valid,
-							NotebookID:  1,
+						UpdateOne(mockTx, storage.UpdateNoteParameters{
+							NoteID:     1,
+							Name:       testData.Name.Valid,
+							Content:    testData.Content.Valid,
+							NotebookID: 1,
 						}).
 						Return(nil, errors.New("something went wrong"))
 					return mockNoteStore
@@ -1159,12 +1155,11 @@ func TestNoteService_UpdateNote(t *testing.T) {
 						EXPECT().BeginTx().Return(mockTx, nil)
 					mockNoteStore.
 						EXPECT().
-						UpdateOne(storage.UpdateNoteParameters{
-							Transaction: mockTx,
-							NoteID:      1,
-							Name:        testData.Name.Valid,
-							Content:     testData.Content.Valid,
-							NotebookID:  1,
+						UpdateOne(mockTx, storage.UpdateNoteParameters{
+							NoteID:     1,
+							Name:       testData.Name.Valid,
+							Content:    testData.Content.Valid,
+							NotebookID: 1,
 						}).
 						Return(
 							&storage.Note{
@@ -1227,12 +1222,11 @@ func TestNoteService_UpdateNote(t *testing.T) {
 						EXPECT().BeginTx().Return(mockTx, nil)
 					mockNoteStore.
 						EXPECT().
-						UpdateOne(storage.UpdateNoteParameters{
-							Transaction: mockTx,
-							NoteID:      1,
-							Name:        testData.Name.Valid,
-							Content:     testData.Content.Valid,
-							NotebookID:  1,
+						UpdateOne(mockTx, storage.UpdateNoteParameters{
+							NoteID:     1,
+							Name:       testData.Name.Valid,
+							Content:    testData.Content.Valid,
+							NotebookID: 1,
 						}).
 						Return(
 							&storage.Note{

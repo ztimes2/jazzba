@@ -126,10 +126,9 @@ func (ns NotebookService) UpdateNotebook(
 	}
 
 	updatedNotebook, err :=
-		ns.notebookStore.UpdateOne(storage.UpdateNotebookParameters{
-			Transaction: tx,
-			NotebookID:  params.NotebookID,
-			Name:        params.Name,
+		ns.notebookStore.UpdateOne(tx, storage.UpdateNotebookParameters{
+			NotebookID: params.NotebookID,
+			Name:       params.Name,
 		})
 	if err != nil {
 		tx.Rollback()

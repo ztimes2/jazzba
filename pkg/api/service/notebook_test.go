@@ -418,10 +418,9 @@ func TestNotebookService_UpdateNotebook(t *testing.T) {
 						Return(mockTx, nil)
 					mockNotebookStore.
 						EXPECT().
-						UpdateOne(storage.UpdateNotebookParameters{
-							Transaction: mockTx,
-							NotebookID:  1,
-							Name:        "Lorem ipsum dolor sit amet",
+						UpdateOne(mockTx, storage.UpdateNotebookParameters{
+							NotebookID: 1,
+							Name:       "Lorem ipsum dolor sit amet",
 						}).
 						Return(nil, errors.New("something went wrong"))
 
@@ -452,10 +451,9 @@ func TestNotebookService_UpdateNotebook(t *testing.T) {
 						Return(mockTx, nil)
 					mockNotebookStore.
 						EXPECT().
-						UpdateOne(storage.UpdateNotebookParameters{
-							Transaction: mockTx,
-							NotebookID:  1,
-							Name:        "Lorem ipsum dolor sit amet",
+						UpdateOne(mockTx, storage.UpdateNotebookParameters{
+							NotebookID: 1,
+							Name:       "Lorem ipsum dolor sit amet",
 						}).
 						Return(
 							&storage.Notebook{
@@ -518,10 +516,9 @@ func TestNotebookService_UpdateNotebook(t *testing.T) {
 						Return(mockTx, nil)
 					mockNotebookStore.
 						EXPECT().
-						UpdateOne(storage.UpdateNotebookParameters{
-							Transaction: mockTx,
-							NotebookID:  1,
-							Name:        "Lorem ipsum dolor sit amet",
+						UpdateOne(mockTx, storage.UpdateNotebookParameters{
+							NotebookID: 1,
+							Name:       "Lorem ipsum dolor sit amet",
 						}).
 						Return(
 							&storage.Notebook{

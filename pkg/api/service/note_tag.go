@@ -75,10 +75,9 @@ func (nts NoteTagService) CreateNoteTag(
 	}
 
 	createdNoteTag, err :=
-		nts.noteTagStore.CreateOne(storage.CreateNoteTagParameters{
-			Transaction: tx,
-			NoteID:      params.NoteID,
-			TagName:     params.TagName,
+		nts.noteTagStore.CreateOne(tx, storage.CreateNoteTagParameters{
+			NoteID:  params.NoteID,
+			TagName: params.TagName,
 		})
 	if err != nil {
 		tx.Rollback()
@@ -132,10 +131,9 @@ func (nts NoteTagService) DeleteNoteTag(noteID int, tagName string) error {
 		return newNoteTagStoreStartTransactionError(err)
 	}
 
-	if err := nts.noteTagStore.DeleteOne(storage.DeleteNoteTagParameters{
-		Transaction: tx,
-		NoteID:      noteID,
-		TagName:     tagName,
+	if err := nts.noteTagStore.DeleteOne(tx, storage.DeleteNoteTagParameters{
+		NoteID:  noteID,
+		TagName: tagName,
 	}); err != nil {
 		tx.Rollback()
 		return newGeneralNoteTagStoreError(err)

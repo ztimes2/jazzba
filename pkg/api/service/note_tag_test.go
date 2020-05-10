@@ -97,10 +97,9 @@ func TestNoteTagService_CreateNoteTag(t *testing.T) {
 						Return(mockTx, nil)
 					mockNoteTagStore.
 						EXPECT().
-						CreateOne(storage.CreateNoteTagParameters{
-							Transaction: mockTx,
-							NoteID:      1,
-							TagName:     "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+						CreateOne(mockTx, storage.CreateNoteTagParameters{
+							NoteID:  1,
+							TagName: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
 						}).
 						Return(nil, errors.New("something went wrong"))
 					return mockNoteTagStore
@@ -130,10 +129,9 @@ func TestNoteTagService_CreateNoteTag(t *testing.T) {
 						Return(mockTx, nil)
 					mockNoteTagStore.
 						EXPECT().
-						CreateOne(storage.CreateNoteTagParameters{
-							Transaction: mockTx,
-							NoteID:      1,
-							TagName:     "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+						CreateOne(mockTx, storage.CreateNoteTagParameters{
+							NoteID:  1,
+							TagName: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
 						}).
 						Return(
 							&storage.NoteTag{
@@ -195,10 +193,9 @@ func TestNoteTagService_CreateNoteTag(t *testing.T) {
 						Return(mockTx, nil)
 					mockNoteTagStore.
 						EXPECT().
-						CreateOne(storage.CreateNoteTagParameters{
-							Transaction: mockTx,
-							NoteID:      1,
-							TagName:     "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+						CreateOne(mockTx, storage.CreateNoteTagParameters{
+							NoteID:  1,
+							TagName: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
 						}).
 						Return(
 							&storage.NoteTag{
@@ -604,10 +601,9 @@ func TestNoteTagService_DeleteNoteTag(t *testing.T) {
 						Return(mockTx, nil)
 					mockNoteTagStore.
 						EXPECT().
-						DeleteOne(storage.DeleteNoteTagParameters{
-							Transaction: mockTx,
-							NoteID:      1,
-							TagName:     "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+						DeleteOne(mockTx, storage.DeleteNoteTagParameters{
+							NoteID:  1,
+							TagName: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
 						}).
 						Return(errors.New("something went wrong"))
 					return mockNoteTagStore
@@ -634,10 +630,9 @@ func TestNoteTagService_DeleteNoteTag(t *testing.T) {
 						Return(mockTx, nil)
 					mockNoteTagStore.
 						EXPECT().
-						DeleteOne(storage.DeleteNoteTagParameters{
-							Transaction: mockTx,
-							NoteID:      1,
-							TagName:     "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+						DeleteOne(mockTx, storage.DeleteNoteTagParameters{
+							NoteID:  1,
+							TagName: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
 						}).
 						Return(nil)
 					return mockNoteTagStore
@@ -683,10 +678,9 @@ func TestNoteTagService_DeleteNoteTag(t *testing.T) {
 						Return(mockTx, nil)
 					mockNoteTagStore.
 						EXPECT().
-						DeleteOne(storage.DeleteNoteTagParameters{
-							Transaction: mockTx,
-							NoteID:      1,
-							TagName:     "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+						DeleteOne(mockTx, storage.DeleteNoteTagParameters{
+							NoteID:  1,
+							TagName: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
 						}).
 						Return(nil)
 					return mockNoteTagStore
