@@ -12,9 +12,9 @@ import (
 // Dependencies holds dependencies and primitives of the eventer.
 type Dependencies struct {
 	EventConsumer   eventdriven.Consumer
-	NotebookStore   storage.NotebookStore
 	NoteStore       storage.NoteStore
 	NoteTagStore    storage.NoteTagStore
+	NotebookStore   storage.NotebookStore
 	NoteUpdater     search.NoteUpdater
 	NoteTagUpdater  search.NoteTagUpdater
 	NotebookUpdater search.NotebookUpdater
