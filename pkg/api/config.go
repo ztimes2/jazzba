@@ -13,24 +13,24 @@ import (
 type Config struct {
 	ServerPort     string `config:"SERVER_PORT"`
 	PostgresConfig struct {
-		Host     string `config:"POSTGRES_HOST"`
-		Port     string `config:"POSTGRES_PORT"`
-		User     string `config:"POSTGRES_USER"`
-		Password string `config:"POSTGRES_PASSWORD"`
-		Name     string `config:"POSTGRES_NAME"`
-		SSLMode  string `config:"POSTGRES_SSLMODE"`
+		Host     string `config:"DB_HOST"`
+		Port     string `config:"DB_PORT"`
+		User     string `config:"DB_USER"`
+		Password string `config:"DB_PASSWORD"`
+		Name     string `config:"DB_NAME"`
+		SSLMode  string `config:"DB_SSLMODE"`
 	}
 	RabbitMQConfig struct {
-		Host     string `config:"RABBITMQ_HOST"`
-		Port     string `config:"RABBITMQ_PORT"`
-		Username string `config:"RABBITMQ_USERNAME"`
-		Password string `config:"RABBITMQ_PASSWORD"`
+		Host     string `config:"RMQ_HOST"`
+		Port     string `config:"RMQ_PORT"`
+		Username string `config:"RMQ_USERNAME"`
+		Password string `config:"RMQ_PASSWORD"`
 	}
 	ElasticSearchConfig struct {
-		Host     string `config:"ELASTICSEARCH_HOST"`
-		Port     string `config:"ELASTICSEARCH_PORT"`
-		Username string `config:"ELASTICSEARCH_USERNAME"`
-		Password string `config:"ELASTICSEARCH_PASSWORD"`
+		Host     string `config:"ES_HOST"`
+		Port     string `config:"ES_PORT"`
+		Username string `config:"ES_USERNAME"`
+		Password string `config:"ES_PASSWORD"`
 	}
 }
 
