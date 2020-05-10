@@ -39,6 +39,7 @@ func New(deps Dependencies) *Eventer {
 			NoteStore:       deps.NoteStore,
 			NoteTagStore:    deps.NoteTagStore,
 			NotebookStore:   deps.NotebookStore,
+			Logger:          deps.Logger,
 		}),
 		logger: deps.Logger,
 	}

@@ -37,7 +37,7 @@ func NewDispatcher(cfg DispatcherConfig) *Dispatcher {
 	notebookEventHandler := newNotebookEventHandler(cfg.NotebookUpdater,
 		cfg.NotebookStore)
 
-	var eventHandlers eventdriven.Handlers
+	eventHandlers := eventdriven.Handlers{}
 	eventHandlers.Register(eventdriven.EventTypeNoteCreated, noteEventHandler.noteCreated)
 	eventHandlers.Register(eventdriven.EventTypeNoteUpdated, noteEventHandler.noteUpdated)
 	eventHandlers.Register(eventdriven.EventTypeNoteDeleted, noteEventHandler.noteDeleted)
