@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/sirupsen/logrus"
+	"github.com/ztimes2/jazzba/pkg/eventdriven"
 	"github.com/ztimes2/jazzba/pkg/eventdriven/rabbit"
 	"github.com/ztimes2/jazzba/pkg/eventer"
 	"github.com/ztimes2/jazzba/pkg/search/elastic"
@@ -64,7 +65,15 @@ func main() {
 	}
 
 	eventer.New(eventer.Dependencies{
-		EventConsumer:   rabbit.NewEventConsumer(amqpConnection),
+		EventConsumer: rabbit.NewEventConsumer(amqpConnection,
+			eventdriven.EventTypeNoteCreated,
+			eventdriven.EventTypeNoteUpdated,
+			eventdriven.EventTypeNoteDeleted,
+			eventdriven.EventTypeNoteTagCreated,
+			eventdriven.EventTypeNoteTagDeleted,
+			eventdriven.EventTypeNotebookUpdated,
+			eventdriven.EventTypeNotebookDeleted,
+		),
 		NoteStore:       postgres.NewNoteStore(db),
 		NoteTagStore:    postgres.NewNoteTagStore(db),
 		NotebookStore:   postgres.NewNotebookStore(db),
