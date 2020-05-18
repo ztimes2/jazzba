@@ -75,7 +75,7 @@ func (nth noteTagHandler) fetchNoteTagsByNote(w http.ResponseWriter, r *http.Req
 }
 
 func (nth noteTagHandler) fetchNoteTagsByNotes(w http.ResponseWriter, r *http.Request) {
-	noteIDs, ok := readIntQueryParams(r, "note_id")
+	noteIDs, ok := readIntQueryParams(r, pathParamNoteID)
 	if !ok {
 		writeBadRequest(w, r.Header, newErrorResponse("invalid note ID parameters"))
 		return

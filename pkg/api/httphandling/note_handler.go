@@ -101,7 +101,7 @@ func (nh noteHandler) fetchNotesByNotebook(w http.ResponseWriter, r *http.Reques
 }
 
 func (nh noteHandler) fetchNotesByNotebooks(w http.ResponseWriter, r *http.Request) {
-	notebookIDs, ok := readIntQueryParams(r, "notebook_id")
+	notebookIDs, ok := readIntQueryParams(r, pathParamNotebookID)
 	if !ok {
 		writeBadRequest(w, r.Header, newErrorResponse("invalid notebook ID parameters"))
 		return
