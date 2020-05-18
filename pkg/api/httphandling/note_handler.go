@@ -37,15 +37,15 @@ func (nh noteHandler) createNote(w http.ResponseWriter, r *http.Request) {
 		NotebookID: reqBody.NotebookID,
 	})
 	if err != nil {
-		var drErr *storage.DuplicateError
-		if errors.As(err, &drErr) {
-			writeBadRequest(w, r.Header, newErrorResponse(drErr.Error()))
+		var dErr *storage.DuplicateError
+		if errors.As(err, &dErr) {
+			writeBadRequest(w, r.Header, newErrorResponse(dErr.Error()))
 			return
 		}
 
-		var isrrErr *storage.ReferenceError
-		if errors.As(err, &isrrErr) {
-			writeBadRequest(w, r.Header, newErrorResponse(isrrErr.Error()))
+		var rErr *storage.ReferenceError
+		if errors.As(err, &rErr) {
+			writeBadRequest(w, r.Header, newErrorResponse(rErr.Error()))
 			return
 		}
 
@@ -61,9 +61,9 @@ func (nh noteHandler) fetchNote(w http.ResponseWriter, r *http.Request) {
 
 	note, err := nh.noteService.FetchNote(noteID)
 	if err != nil {
-		var rnfError *storage.NotFoundError
-		if errors.As(err, &rnfError) {
-			writeBadRequest(w, r.Header, newErrorResponse(rnfError.Error()))
+		var nfErr *storage.NotFoundError
+		if errors.As(err, &nfErr) {
+			writeBadRequest(w, r.Header, newErrorResponse(nfErr.Error()))
 			return
 		}
 
@@ -146,21 +146,21 @@ func (nh noteHandler) updateNote(w http.ResponseWriter, r *http.Request) {
 		NotebookID: reqBody.NotebookID,
 	})
 	if err != nil {
-		var drErr *storage.DuplicateError
-		if errors.As(err, &drErr) {
-			writeBadRequest(w, r.Header, newErrorResponse(drErr.Error()))
+		var dErr *storage.DuplicateError
+		if errors.As(err, &dErr) {
+			writeBadRequest(w, r.Header, newErrorResponse(dErr.Error()))
 			return
 		}
 
-		var isrrErr *storage.ReferenceError
-		if errors.As(err, &isrrErr) {
-			writeBadRequest(w, r.Header, newErrorResponse(isrrErr.Error()))
+		var rErr *storage.ReferenceError
+		if errors.As(err, &rErr) {
+			writeBadRequest(w, r.Header, newErrorResponse(rErr.Error()))
 			return
 		}
 
-		var rnfErr *storage.NotFoundError
-		if errors.As(err, &rnfErr) {
-			writeBadRequest(w, r.Header, newErrorResponse(rnfErr.Error()))
+		var nfErr *storage.NotFoundError
+		if errors.As(err, &nfErr) {
+			writeBadRequest(w, r.Header, newErrorResponse(nfErr.Error()))
 			return
 		}
 
@@ -175,9 +175,9 @@ func (nh noteHandler) deleteNote(w http.ResponseWriter, r *http.Request) {
 	noteID, _ := readIntPathParam(r, pathParamNoteID)
 
 	if err := nh.noteService.DeleteNote(noteID); err != nil {
-		var rnfErr *storage.NotFoundError
-		if errors.As(err, &rnfErr) {
-			writeNotFound(w, r.Header, newErrorResponse(rnfErr.Error()))
+		var nfErr *storage.NotFoundError
+		if errors.As(err, &nfErr) {
+			writeNotFound(w, r.Header, newErrorResponse(nfErr.Error()))
 			return
 		}
 

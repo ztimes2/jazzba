@@ -41,15 +41,15 @@ func (nth noteTagHandler) createNoteTag(w http.ResponseWriter, r *http.Request) 
 		},
 	)
 	if err != nil {
-		var drErr *storage.DuplicateError
-		if errors.As(err, &drErr) {
-			writeBadRequest(w, r.Header, newErrorResponse(drErr.Error()))
+		var dErr *storage.DuplicateError
+		if errors.As(err, &dErr) {
+			writeBadRequest(w, r.Header, newErrorResponse(dErr.Error()))
 			return
 		}
 
-		var isrrErr *storage.ReferenceError
-		if errors.As(err, &isrrErr) {
-			writeNotFound(w, r.Header, newErrorResponse(isrrErr.Error()))
+		var rErr *storage.ReferenceError
+		if errors.As(err, &rErr) {
+			writeNotFound(w, r.Header, newErrorResponse(rErr.Error()))
 			return
 		}
 
@@ -95,9 +95,9 @@ func (nth noteTagHandler) deleteNoteTag(w http.ResponseWriter, r *http.Request) 
 	tagName := readStringPathParam(r, pathParamTagName)
 
 	if err := nth.noteTagService.DeleteNoteTag(noteID, tagName); err != nil {
-		var rnfErr *storage.NotFoundError
-		if errors.As(err, &rnfErr) {
-			writeNotFound(w, r.Header, newErrorResponse(rnfErr.Error()))
+		var nfErr *storage.NotFoundError
+		if errors.As(err, &nfErr) {
+			writeNotFound(w, r.Header, newErrorResponse(nfErr.Error()))
 		}
 
 		writeInternalServerError(w, nth.logger, err)
